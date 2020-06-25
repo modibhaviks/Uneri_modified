@@ -15,7 +15,7 @@ final class ViewController: UIViewController {
     @IBOutlet weak var fillEmptyButton: UIButton!
     
     private lazy var uneri: Uneri = {
-        let frame = CGRect(x: 0, y: circleView.frame.size.height-10, width: circleView.frame.size.width, height: circleView.frame.size.height)
+        let frame = CGRect(x: 0, y: 0, width: circleView.frame.size.width, height: circleView.frame.size.height)
         let uneri = Uneri(frame: frame)
         return uneri
     }()
@@ -45,6 +45,7 @@ final class ViewController: UIViewController {
         uneri.subGradientColors = [.clear]
         uneri.uneriSpeed = 2
         uneri.uneriHeight = 15
+        uneri.fillTo(fillPercentage: 0.2)
     }
     
     // MARK: - IBActions
@@ -54,13 +55,13 @@ final class ViewController: UIViewController {
             fillEmptyButton.setTitle("Empty", for: .normal)
             /// Start animation to fill the circle
             UIView.animate(withDuration: 10) {
-                self.uneri.frame = CGRect(x: 0, y: 10, width: self.circleView.frame.size.width, height: self.circleView.frame.size.height)
+                self.uneri.fillTo(fillPercentage: 1.0)
             }
         }
         else {
             fillEmptyButton.setTitle("Fill", for: .normal)
             UIView.animate(withDuration: 10) {
-                self.uneri.frame = CGRect(x: 0, y: self.circleView.frame.size.height-10, width: self.circleView.frame.size.width, height: self.circleView.frame.size.height)
+                self.uneri.fillTo(fillPercentage: 0.2)
             }
         }
     }

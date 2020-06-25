@@ -135,6 +135,12 @@ open class Uneri: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    public func fillTo(fillPercentage: CGFloat, withAnimation: Bool = false) {
+        let fillSize = (1.0 - fillPercentage)*self.bounds.height;
+        let fillFrame = CGRect(x: 0, y: fillSize, width: self.bounds.width, height: self.bounds.width)
+        self.frame = fillFrame
+    }
+    
     public func resume() {
         mainUneriLayer.resumeAnim(withSpeed: uneriSpeed)
         subUneriLayer.resumeAnim(withSpeed: uneriSpeed)
